@@ -27,8 +27,8 @@ handle() {
   file=$(echo "$url" | awk -F '[#?]' '{ print $1 }')
   params=$(echo "$url" | awk -F '[#?]' '{ print $2 }')
   file=$(realpath "$wwwdir/$file")
-  if [ "$file" = "$wwwdir" ]; then
-    for f in "$wwwdir"/index.*; do
+  if [ -d "$file" ]; then
+    for f in "$file"/index.*; do
       if [ -f "$f" ]; then
         file="$f"
       fi
